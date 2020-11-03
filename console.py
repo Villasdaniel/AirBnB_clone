@@ -129,13 +129,13 @@ class HBNBCommand(cmd.Cmd):
             if instance:
                 try:
                     x = int(args[3].replace('"', ''))
-                except ValueError:
+                except:
                     try:
                         x = float(args[3].replace('"', ''))
-                    except ValueError:
+                    except:
                         try:
                             x = str(args[3].replace('"', ''))
-                        except ValueError:
+                        except:
                                     pass
                 args[3] = args[3].replace('"', '')
                 d1 = {args[2]: x}
