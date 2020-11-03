@@ -112,7 +112,46 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """update a existing instance or create a new one"""
-        if not arg:
+        try:
+            if not line:
+                raise SyntaxError()
+            name = line.split()
+            if name[0] not in self.returdic().keys():
+                raise NameError()
+            if len(name) < 2:
+                raise IndexError()
+            objects = storage.all()
+            key = name[0] + "." + name[1]
+            if key not in objects:
+                raise KeyError()
+            if len(name) < 3:
+                raise AttributeError()
+            if len(name) < 4:
+                raise ValueError()
+            try:
+                x = int(name[3].replace('"', ''))
+            except ValueError:
+                try:
+                    x = float(name[3].replace('"', ''))
+                except ValueError:
+                    try:
+                        x = str(name[3].replace('"', ''))
+                    except ValueError:
+                        pass
+            setattr(objects[str(name[0]) + "." + str(name[1])], name[2], x)
+        except SyntaxError:
+            print("** class name missing **")
+        except NameError:
+            print("** class doesn't exist **")
+        except IndexError:
+            print("** instance id missing **")
+        except KeyError:
+            print("** no instance found **")
+        except AttributeError:
+            print("** attribute name missing **")
+        except ValueError:
+            print("** value missing **")
+        """if not arg:
             print("** class name missing **")
             return
         args = arg.split()
@@ -144,9 +183,8 @@ class HBNBCommand(cmd.Cmd):
                     x = str(args[3].replace('"', ''))
                 except ValueError:
                     pass
-        setattr(dics[str(args[0]) + "." + str(args[1])], args[2], x)
+        setattr(dics[str(args[0]) + "." + str(args[1])], args[2], x)"""
 
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
-    
