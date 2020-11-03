@@ -94,7 +94,7 @@ class HBNBCommand(cmd.Cmd):
         lists = []
         args = arg.split()
         dics = storage.all()
-        if args:
+        if arg:
             if args[0] not in self.returdic().keys():
                 print("** class doesn't exist **")
                 return
@@ -104,6 +104,11 @@ class HBNBCommand(cmd.Cmd):
                     if args[0] == clase[0]:
                         lists.append(str(value))
                 print(lists)
+                return
+        if dics:
+            for key, value in dics.items():
+                lists.append(str(value))
+        print(lists)
 
     def do_update(self, arg):
         """update a existing instance or create a new one"""
