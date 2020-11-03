@@ -35,7 +35,7 @@ class HBNBCommand(cmd.Cmd):
         """EOF"""
         return True
 
-    def do_emptyline(self, arg):
+    def emptyline(self):
         """empty line + ENTER shouldn’t execute anything"""
         pass
 
