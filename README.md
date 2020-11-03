@@ -1,2 +1,3 @@
 # AirBnB_clone
+#ME CLONARON LA DINAMICA 
 
