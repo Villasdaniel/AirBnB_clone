@@ -112,17 +112,17 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """update a existing instance or create a new one"""
-        args = arg.split()
-        dics = storage.all()
-        if len(args) == 0:
+        if not arg:
             print("** class name missing **")
             return
+        args = arg.split()
         if args[0] not in self.returdic().keys():
             print("** class doesn't exist **")
             return
         if (len(args) == 1) and (args[0] in self.returdic().keys()):
             print("** instance id missing **")
             return
+        dics = storage.all()
         if len(args) == 2:
             copid = dics.get(str(args[0]) + "." + str(args[1]))
             if copid is None:
@@ -133,6 +133,7 @@ class HBNBCommand(cmd.Cmd):
                 return
         if len(args) == 3:
             print("** value missing **")
+            return
         try:
             x = int(args[3].replace('"', ''))
         except ValueError:
