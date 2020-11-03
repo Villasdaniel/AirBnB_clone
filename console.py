@@ -112,39 +112,36 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """update a existing instance or create a new one"""
-        if not arg:
-            print("** class name missing **")
-            return
         args = arg.split()
-        if args[0] not in self.returdic().keys():
+        if len(arg) < 1:
+            print("** class name missing **")
+        elif(args[0] not in self.returdic().keys()):
             print("** class doesn't exist **")
-            return
-        if (len(args) == 1) and (args[0] in self.returdic().keys()):
+        elif len(args) < 2:
             print("** instance id missing **")
-            return
-        dics = storage.all()
-        if len(args) == 2:
-            copid = dics.get(str(args[0]) + "." + str(args[1]))
-            if copid is None:
-                print("** no instance found **")
-                return
-            else:
-                print("** attribute name missing **")
-                return
-        if len(args) == 3:
+        elif len(args) < 3:
+            print("** attribute name missing **")
+        elif len(args) < 4:
             print("** value missing **")
-            return
-        try:
-            x = int(args[3].replace('"', ''))
-        except ValueError:
-            try:
-                x = float(args[3].replace('"', ''))
-            except ValueError:
+        else:
+            all_dict = storage.all()
+            instance = all_dict.get(str(args[0]) + "." + str(args[1]))
+            if instance:
                 try:
-                    x = str(args[3].replace('"', ''))
+                    x = int(args[3].replace('"', ''))
                 except ValueError:
-                    pass
-        setattr(dics[str(args[0]) + "." + str(args[1])], args[2], x)
+                    try:
+                        x = float(args[3].replace('"', ''))
+                    except ValueError:
+                        try:
+                            x = str(args[3].replace('"', ''))
+                        except ValueError:
+                                    pass
+                args[3] = args[3].replace('"', '')
+                d1 = {args[2]: x}
+                instance.__dict__.update(d1)
+            else:
+                print("** no instance found **")
 
 
 if __name__ == "__main__":
