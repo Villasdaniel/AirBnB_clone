@@ -129,14 +129,14 @@ class HBNBCommand(cmd.Cmd):
             if instance:
                 try:
                     x = int(args[3].replace('"', ''))
-                except:
+                except ValueError:
                     try:
                         x = float(args[3].replace('"', ''))
-                    except:
+                    except ValueError:
                         try:
                             x = str(args[3].replace('"', ''))
-                        except:
-                                    pass
+                        except ValueError:
+                            pass
                 args[3] = args[3].replace('"', '')
                 d1 = {args[2]: x}
                 instance.__dict__.update(d1)
