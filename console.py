@@ -5,6 +5,7 @@
 import cmd
 import sys
 import json
+import models
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
