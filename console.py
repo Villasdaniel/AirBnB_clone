@@ -33,6 +33,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg):
         """EOF"""
+        print()
         return True
 
     def emptyline(self):
@@ -43,7 +44,6 @@ class HBNBCommand(cmd.Cmd):
         """create a new instance"""
         if len(arg) == 0:
             print("** class name missing **")
-            return
         elif arg not in self.returdic().keys():
             print("** class doesn't exist **")
         else:
@@ -56,7 +56,6 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         if len(args) == 0:
             print("** class name missing **")
-            return
         elif args[0] not in self.returdic().keys():
             print("** class doesn't exist **")
         elif (len(args) == 1) and (args[0] in self.returdic().keys()):
@@ -85,7 +84,8 @@ class HBNBCommand(cmd.Cmd):
             if dics:
                 ids = dics.get(str(args[0]) + "." + str(args[1]))
                 if ids:
-                    del dics[str(args[0]) + "." + str(args[1])]
+                    dics.pop(args[0] + "." + args[1])
+                    storage.save()
                     return
             print("** no instance found **")
 
