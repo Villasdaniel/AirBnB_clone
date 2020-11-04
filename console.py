@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """contains the entry points of the command interpreter"""
 
-
 import cmd
 import sys
 import json
