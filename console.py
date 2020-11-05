@@ -144,6 +144,50 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
 
+    def do_count(self, arg):
+        """
+        Count number of class instances
+        """
+        count = 0
+        args = arg.split()
+        if(args[0] not in self.returdic().keys()):
+            print(" class doesn't exist ")
+        else:
+            list1 = []
+            all_dict = storage.all()
+            for key, value in all_dict.items():
+                if args[0] in key:
+                    count += 1
+            print(count)
+
+    def default(self, inp):
+        """ Method for the advanced tasks """
+        inp_split = inp.split(".")
+        if inp_split[1] == "all()":
+            return self.do_all(inp_split[0])
+        elif inp_split[1] == "count()":
+            return self.do_count(inp_split[0])
+        elif "show" in inp_split[1]:
+            try:
+                s = str(inp_split[1])
+                args = s[s.find("(")+1:s.find(")")].replace(",", " ")\
+                    .replace('"', "")
+                return self.do_show(str(inp_split[0]) + " " + args)
+            except:
+                print("Usage: <class name>.show(\"<id>\")")
+        elif "destroy" in inpsplit[1]:
+            try:
+                id = inp_split[1].split('"')
+                return self.do_destroy(str(inpsplit[0]) + " " + id[1])
+            except:
+                print("Usage: <class name>.destroy(\"<id>\")")
+        elif "update" in inp_split[1]:
+
+            s = str(inp_split[1])
+            args = s[s.find("(")+1:s.find(")")].\
+                replace(",", " ").replace('"', "")
+            return self.do_update(str(inp_split[0]) + " " + args)
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
