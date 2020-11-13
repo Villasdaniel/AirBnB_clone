@@ -1,0 +1,1 @@
+Thisdirectory contains the web_statics project files
