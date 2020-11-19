@@ -46,7 +46,7 @@
 .max_guest {
     width: 100px;
     height: 80px;
-    background: url(/images/icon_group.png);
+    background: url(/images/icon_group.png) no-repeat;
 }
 .max_guest p, .number_rooms p, .number_bathrooms p {
     line-height: 100px;
@@ -55,13 +55,13 @@
 .number_rooms {
     width: 100px;
     height: 80px;
-    background: url(/images/icon_bed.png);
+    background: url(/images/icon_bed.png) no-repeat;
 
 }
 .number_bathrooms {
     width: 100px;
     height: 80px;
-    background: url(/images/icon_bath.png);
+    background: url(/images/icon_bath.png) no-repeat;
 }
 .user p, .description p {
     text-align: left;
